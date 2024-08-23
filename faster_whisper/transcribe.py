@@ -160,6 +160,8 @@ class BatchedInferencePipeline:
                 device = "cuda" if torch.cuda.is_available() else "cpu"
             elif device == "auto":
                 device = self.model.device
+            elif device == "mps":
+                device = "mps" if torch.backends.mps.is_available() else "mps"
             return torch.device(device)
         elif device < 0:
             return torch.device("cpu")
